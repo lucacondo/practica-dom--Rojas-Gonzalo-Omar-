@@ -15,20 +15,34 @@
   </head>
   <body>
     <header>
-      <div>
+      <div
+        class="text-center bg-dark text-warning card border-warning py-2 border-5 border-bottom-0"
+      >
         <h1>Galería de superheroes</h1>
         <p>Encuentre a su personaje favorito y descubra más de el:</p>
       </div>
     </header>
-    <main>
-      <h2>Agregado de personaje</h2>
-      <form id="formulario">
-        <input type="text" id="nombre" />
-        <input type="text" id="imagen" />
-        <button type="submit">Cargar personaje</button>
-      </form>
+
+    <main class="container">
+      <div class="text-center my-3">
+        <h2>Agregado de Personaje</h2>
+        <form id="formulario">
+          <input type="text" id="nombre" placeholder="Nombre" />
+          <input type="text" id="imagen" placeholder="URL Imágen" /><br />
+          <button type="submit" class="my-3 btn btn-warning">
+            Cargar personaje
+          </button>
+        </form>
+      </div>
+
+      <div class="row mt-2" id="rowContainer"></div>
     </main>
-    <footer>©Derechos reservados</footer>
+
+    <footer
+      class="p-3 bg-dark fw-bold text-warning border border-warning border-5 border-top-0"
+    >
+      ©Derechos reservados
+    </footer>
 
     <script src="/assets/js/app.js"></script>
     <script
