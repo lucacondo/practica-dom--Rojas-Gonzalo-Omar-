@@ -5,3 +5,9 @@
 input{
     border-radius: 6px;
 }
+
+.card:hover{
+    background-color: #ffc107;
+    transform: translateY(-5px);
+    transition: 0.5s;
+}

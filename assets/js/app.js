@@ -14,38 +14,74 @@ let personajes = [
 const rowContainer = document.querySelector("#rowContainer")
 const formulario = document.querySelector("#formulario")
 
-
-
 const cargarPersonajes = (arregloDePersonajes) => {
-  arregloDePersonajes.forEach(personaje => {
-    rowContainer += `<div class="col-3 my-2">
-          <div class="card" style="width: 10rem">
-            <img
-              src=${personaje.imagen}
-              class="card-img-top"
-              alt=${personaje.nombre}
-              style="height: 150px; object-fit: contain"
-            />
-            <div class="card-body">
-              <h5 class="card-title">${personaje.nombre}</h5>
-              <a href="#" class="btn btn-danger btn-eliminar">Eliminar</a>
-            </div>
-          </div>
-        </div>
-    `
-  });
-}
 
-const filtroPersonajes = document.querySelector(#filtroNombre);
-const btnFiltrado = document.querySelector(#btnFiltrar);
+    rowContainer.innerHTML = "";
+
+    arregloDePersonajes.forEach(personaje => {
+        rowContainer.innerHTML += `
+        <div class="col-3 my-2" data-id="${personaje.id}">
+            <div class="card" style="width: 10rem">
+                <img
+                    src="${personaje.imagen}"
+                    class="card-img-top"
+                    alt="${personaje.nombre}"
+                    style="height: 150px; object-fit: contain"
+                />
+                <div class="card-body">
+                    <h5 class="card-title">${personaje.nombre}</h5>
+                    <a href="#" class="btn btn-danger btn-eliminar">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        `;
+    });
+};
+
+cargarPersonajes(personajes);
+
+// Eliminar personaje
+rowContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-eliminar")) {
+        const contenedorPrincipalMasCercano = e.target.closest(".col-3");
+        const idDelPersonaje = Number(contenedorPrincipalMasCercano.dataset.id);
+
+        personajes = personajes.filter(personaje => {
+            return personaje.id !== idDelPersonaje;
+        });
+
+        cargarPersonajes(personajes);
+    }
+});
+
+// Agregar personaje
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const valorNombre = formulario.nombre.value;
+    const valorImagen = formulario.imagen.value;
+
+    const nuevoObjeto = {
+        id: personajes.length + 1,
+        nombre: valorNombre,
+        imagen: valorImagen,
+    };
+
+    personajes.push(nuevoObjeto);
+
+    cargarPersonajes(personajes);
+});
+
+// Buscar personaje
+const filtroPersonajes = document.querySelector("#filtroNombre");
+const btnFiltrado = document.querySelector("#btnFiltrar");
 
 btnFiltrado.addEventListener("click", () => {
-  const textoBuscado = filtroPersonajes.value.toLowerCase();
+    const textoBuscado = filtroPersonajes.value.toLowerCase();
 
-  const personajesFiltrados = personajes.filter (personaje => {
-    return personaje.nombre.toLowerCase().includes(textoBuscado);
-  })
+    const personajesFiltrados = personajes.filter(personaje => {
+        return personaje.nombre.toLowerCase().includes(textoBuscado);
+    });
 
-  cargarPersonajes(personajesFiltrados)
-
-})
+    cargarPersonajes(personajesFiltrados);
+});
