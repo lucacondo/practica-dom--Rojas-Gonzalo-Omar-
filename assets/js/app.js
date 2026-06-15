@@ -35,3 +35,17 @@ const cargarPersonajes = (arregloDePersonajes) => {
     `
   });
 }
+
+const filtroPersonajes = document.querySelector(#filtroNombre);
+const btnFiltrado = document.querySelector(#btnFiltrar);
+
+btnFiltrado.addEventListener("click", () => {
+  const textoBuscado = filtroPersonajes.value.toLowerCase();
+
+  const personajesFiltrados = personajes.filter (personaje => {
+    return personaje.nombre.toLowerCase().includes(textoBuscado);
+  })
+
+  cargarPersonajes(personajesFiltrados)
+
+})
