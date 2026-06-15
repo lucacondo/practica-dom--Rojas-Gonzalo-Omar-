@@ -24,15 +24,29 @@
     </header>
 
     <main class="container">
-      <div class="text-center my-3">
-        <h2>Agregado de Personaje</h2>
-        <form id="formulario">
-          <input type="text" id="nombre" placeholder="Nombre" />
-          <input type="text" id="imagen" placeholder="URL Imágen" /><br />
-          <button type="submit" class="my-3 btn btn-warning">
-            Cargar personaje
+      <div class="row d-flex justify-content-around">
+        <div
+          class="d-flex col-5 text-center border my-3 py-3 flex-column justify-content-center align-items-center"
+        >
+          <h2>Agregado de Personaje</h2>
+          <form id="formulario">
+            <input type="text" id="nombre" placeholder="Nombre" />
+            <input type="text" id="imagen" placeholder="URL Imágen" /><br />
+            <button type="submit" class="my-3 btn btn-warning">
+              Cargar personaje
+            </button>
+          </form>
+        </div>
+
+        <div
+          class="d-flex col-5 text-center my-3 py-3 border flex-column justify-content-center align-items-center"
+        >
+          <h2>Busca tu personaje</h2>
+          <input type="text" id="filtroNombre" placeholder="Buscar..." />
+          <button id="btnFiltrar" class="btn btn-dark text-warning my-3">
+            Buscar
           </button>
-        </form>
+        </div>
       </div>
 
       <div class="row mt-2" id="rowContainer"></div>

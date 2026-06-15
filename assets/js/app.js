@@ -1,4 +1,4 @@
-const personajes = [
+let personajes = [
 { id: 1, nombre: "A-Bomb", imagen:
 "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/1-a-bomb.jpg" },
 { id: 2, nombre: "Abe Sapien", imagen:
@@ -11,3 +11,41 @@ const personajes = [
 "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/5-abraxas.jpg" },
 ];
 
+const rowContainer = document.querySelector("#rowContainer")
+const formulario = document.querySelector("#formulario")
+
+
+
+const cargarPersonajes = (arregloDePersonajes) => {
+  arregloDePersonajes.forEach(personaje => {
+    rowContainer += `<div class="col-3 my-2">
+          <div class="card" style="width: 10rem">
+            <img
+              src=${personaje.imagen}
+              class="card-img-top"
+              alt=${personaje.nombre}
+              style="height: 150px; object-fit: contain"
+            />
+            <div class="card-body">
+              <h5 class="card-title">${personaje.nombre}</h5>
+              <a href="#" class="btn btn-danger btn-eliminar">Eliminar</a>
+            </div>
+          </div>
+        </div>
+    `
+  });
+}
+
+const filtroPersonajes = document.querySelector(#filtroNombre);
+const btnFiltrado = document.querySelector(#btnFiltrar);
+
+btnFiltrado.addEventListener("click", () => {
+  const textoBuscado = filtroPersonajes.value.toLowerCase();
+
+  const personajesFiltrados = personajes.filter (personaje => {
+    return personaje.nombre.toLowerCase().includes(textoBuscado);
+  })
+
+  cargarPersonajes(personajesFiltrados)
+
+})
