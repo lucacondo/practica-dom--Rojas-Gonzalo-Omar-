@@ -14,29 +14,7 @@ let personajes = [
 const rowContainer = document.querySelector("#rowContainer")
 const formulario = document.querySelector("#formulario")
 
-/* const cargarPersonajes = (arregloDePersonajes) => {
-    rowContainer.innerHTML = ""
 
-    arregloDePersonajes.forEach(personaje => {
-        rowContainer.innerHTML += `
-            <div class="col-3 my-2" data-id=${personaje.id}>
-          <div class="card" style="width: 10rem">
-            <img
-              src=${personaje.imagen}
-              class="card-img-top"
-              alt=${personaje.nombre}
-              style="height: 150px; object-fit: contain"
-            />
-            <div class="card-body">
-              <h5 class="card-title">${personaje.nombre}</h5>
-              <a href="#" class="btn btn-danger btn-eliminar">Eliminar</a>
-            </div>
-          </div>
-        </div>
-        
-        `
-    });
-} */
 
 const cargarPersonajes = (arregloDePersonajes) => {
   arregloDePersonajes.forEach(personaje => {
