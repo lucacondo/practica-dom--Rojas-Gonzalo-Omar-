@@ -15,8 +15,12 @@ const rowContainer = document.querySelector("#rowContainer")
 const formulario = document.querySelector("#formulario")
 
 const cargarPersonajes = (arregloDePersonajes) => {
-  arregloDePersonajes.forEach(personaje => {
-    rowContainer += `<div class="col-3 my-2">
+
+    rowContainer.innerHTML = ""
+
+    arregloDePersonajes.forEach(personaje => {
+        rowContainer.innerHTML += `
+            <div class="col-3 my-2" data-id=${personaje.id}>
           <div class="card" style="width: 10rem">
             <img
               src=${personaje.imagen}
@@ -30,7 +34,40 @@ const cargarPersonajes = (arregloDePersonajes) => {
             </div>
           </div>
         </div>
-    `
-  });
+        
+        `
+    });
 }
 
+cargarPersonajes(personajes)
+
+
+rowContainer.addEventListener("click", (e) => {
+    if(e.target.classList.contains("btn-eliminar")){
+        const contenedorPrincipalMasCercano = e.target.closest(".col-3")
+        const idDelPersonaje = Number(contenedorPrincipalMasCercano.dataset.id);
+
+        personajes = personajes.filter(personaje => {
+            return personaje.id !== idDelPersonaje
+        })
+
+        contenedorPrincipalMasCercano.remove()
+    }
+})
+
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    const valorNombre = formulario.nombre.value;
+    const valorImagen = formulario.imagen.value;
+
+    const nuevoObjeto = {
+        id: personajes.length + 1,
+        nombre: valorNombre,
+        imagen: valorImagen,
+    }
+
+    personajes.push(nuevoObjeto)
+
+    cargarPersonajes(personajes)
+})
